@@ -1,0 +1,41 @@
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias gw='cd ~/Workspace'
+alias gc='cd ~/.config'
+alias gd='cd ~/Downloads'
+alias ll='ls -lh'
+alias lla='ls -alh'
+alias lls='ls -lhS'
+alias llas='ls -alhS'
+alias h='history'
+alias hg='history | grep'
+alias mx='chmod u+x'
+alias mxx='chmod 700'
+
+alias vim='vimx'
+
+alias ping='ping -c 10'
+alias ip6='ip -6'
+alias tel='telnet localhost'
+alias wlcp='wl-copy'
+alias wlps='wl-paste'
+
+alias szrc='source ~/.zshrc'
+alias die='poweroff'
+alias cd='z'
+alias f='fzf'
+alias ff='fastfetch'
+alias st='systemdmanager-tui'
+alias ytdlp='yt-dlp'
+
+alias vifstab='sudoedit /etc/fstab'
+
+# rm behaviour
+alias tt='trash'
+alias bcat='bat -p --theme=gruvbox-dark --pager=never'
+
+# manage dotfiles with bare git repo under ~/.dotfiles
+alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
