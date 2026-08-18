@@ -16,6 +16,3 @@ zstyle ':vcs_info:git:*' formats ' (%b)'
 setopt PROMPT_SUBST
 
 PROMPT='${MINT_GREEN}%n@%m ${RESET}${CYAN}%~${RESET}${LIGHT_RED}${vcs_info_msg_0_}${RESET} \$ '
-
-
-

@@ -3,9 +3,11 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
+alias cd='z'
 alias gw='cd ~/Workspace'
 alias gc='cd ~/.config'
 alias gd='cd ~/Downloads'
+alias gdo='cd ~/.dotfiles'
 alias ll='ls -lh'
 alias lla='ls -alh'
 alias lls='ls -lhS'
@@ -14,26 +16,18 @@ alias h='history'
 alias hg='history | grep'
 alias mx='chmod u+x'
 alias mxx='chmod 700'
+alias szrc='source ~/.zshrc'
 
-alias vim='vimx'
-
-alias ping='ping -c 10'
+alias ping='ping -c 4'
 alias ip6='ip -6'
 alias tel='telnet localhost'
+
 alias wlcp='wl-copy'
 alias wlps='wl-paste'
-
-alias szrc='source ~/.zshrc'
 alias die='poweroff'
-alias cd='z'
-alias f='fzf'
-alias ff='fastfetch'
-alias st='systemdmanager-tui'
 alias ytdlp='yt-dlp'
 
 alias vifstab='sudoedit /etc/fstab'
-
-# rm behaviour
 alias tt='trash'
 alias bcat='bat -p --theme=gruvbox-dark --pager=never'
 

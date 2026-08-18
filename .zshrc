@@ -112,6 +112,8 @@
 # !!!!!!!!!!! My current and custom zshrc starts here !!!!!!!!!!!!!!
 
 
+# omz stuffs
+
 export ZSH="$HOME/.oh-my-zsh"
 
 plugins=(
@@ -133,22 +135,8 @@ source $ZSH/oh-my-zsh.sh
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 autoload -U compinit; compinit
 
-# Add zoxide, atuin and fzf
-eval "$(zoxide init zsh)"
-source <(fzf --zsh)
-eval "$(atuin init zsh --disable-up-arrow)"
 
-# personal zshrc configs
-if [ -d ~/.zshrc.d ]; then
-    for rc in ~/.zshrc.d/*.sh; do
-        if [ -f "$rc" ]; then
-            . "$rc"
-        fi
-    done
-fi
-unset rc
-
-# additional configs to be sourced last
+# zsh configs (should be after omz to overwrite omz defaults)
 
 # use ctrl-f to select files in fzf tab menu
 zstyle ':fzf-tab:*' fzf-bindings 'ctrl-f:toggle'
@@ -164,3 +152,21 @@ zstyle ":completion:*:commands" rehash 1
 
 #auto update omz without prompt
 zstyle ':omz:update' mode auto
+
+
+# source needed tools
+
+eval "$(zoxide init zsh)"
+source <(fzf --zsh)
+eval "$(atuin init zsh --disable-up-arrow)"
+
+
+# personal zshrc configs
+if [ -d ~/.zshrc.d ]; then
+    for rc in ~/.zshrc.d/*.sh; do
+        if [ -f "$rc" ]; then
+            . "$rc"
+        fi
+    done
+fi
+unset rc
