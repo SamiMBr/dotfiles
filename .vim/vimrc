@@ -1,0 +1,19 @@
+" vimrc is configured in a direcotry ~/.vim/vimrc.d under ~/.vim
+
+" source general options
+source ~/.vim/vimrc.d/options.vim
+
+" source keybinds
+source ~/.vim/vimrc.d/keybinds.vim
+
+" source custom commands
+source ~/.vim/vimrc.d/commands.vim
+
+" source plugins
+source ~/.vim/vimrc.d/plugins.vim
+source ~/.vim/vimrc.d/coc.vim
+
+" source theme ( must be sourced after plugins )
+source ~/.vim/vimrc.d/theme.vim
+
+source ~/.vim/vimrc.d/yaml.vim
