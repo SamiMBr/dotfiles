@@ -27,6 +27,7 @@ alias wlps='wl-paste'
 alias die='poweroff'
 alias ytdlp='yt-dlp'
 
+alias vim='vimx'
 alias vifstab='sudoedit /etc/fstab'
 alias tt='trash'
 alias bcat='bat -p --theme=gruvbox-dark --pager=never'
