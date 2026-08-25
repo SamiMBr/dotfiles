@@ -6,11 +6,13 @@
 
 set -e
 
-# git required
-if ! command -v git &> /dev/null; then
-    echo "git required but not found"
-    exit 1
-fi
+# sudo and git required
+for com in sudo  git; do
+    if ! command -v "$com" &> /dev/null; then
+        echo "$com required but not found"
+        exit 1
+    fi
+done
 
 
 # The script can run on: fedora, debian, arch, ubuntu
@@ -22,17 +24,14 @@ packages=(kitty kitty-shell-integration kitty-terminfo)
 echo "Installing kitty"
 
 case "$distro_name" in
-    fedora)
+    fedora|almalinux|rhel)
         sudo dnf install -y "${packages[@]}"
         ;;
-    debian)
+    debian|ubuntu|kali|linuxmint|pop)
         sudo apt-get update && sudo apt-get install -y "${packages[@]}"
         ;;
-    ubuntu)
-        sudo apt-get update && sudo apt-get install -y "${packages[@]}"
-        ;;
-    arch)
-        sudo pacman -Sy && sudo pacman -S --needed "${packages[@]}"
+    arch|sysrescue|manjaro|cachyos)
+        sudo pacman -Sy && sudo pacman -S --needed --noconfirm "${packages[@]}"
         ;;
     *)
         echo "$distro_name Unsupported, you can tweak the script to make it work"

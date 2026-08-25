@@ -8,8 +8,8 @@
 
 set -e
 
-# curl and git required
-for com in curl git; do
+# sudo, curl and git required
+for com in sudo curl git; do
     if ! command -v "$com" &> /dev/null; then
         echo "$com required but not found"
         exit 1
@@ -21,21 +21,19 @@ done
 
 distro_name=$(cat /etc/os-release | grep -Po "^ID=\K.*")
 
-# All required packages exist in main repo of distro, except for atuin on ubuntu
-
 packages=(vim fzf)
 
 echo "Installing Vim and required packages"
 
 case "$distro_name" in
-    fedora)
+    fedora|almalinux|rhel)
         sudo dnf install -y "${packages[@]}"
         ;;
-    debian|ubuntu)
+    debian|ubuntu|kali|linuxmint|pop)
         sudo apt-get update && sudo apt-get install -y "${packages[@]}"
         ;;
-    arch)
-        sudo pacman -Sy && sudo pacman -S --needed "${packages[@]}"
+    arch|sysrescue|manjaro|cachyos)
+        sudo pacman -Sy && sudo pacman -S --needed --noconfirm "${packages[@]}"
         ;;
     *)
         echo "$distro_name Unsupported, you can tweak the script to make it work"

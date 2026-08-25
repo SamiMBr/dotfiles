@@ -10,8 +10,8 @@
 
 set -e
 
-# curl and git required
-for com in curl git; do
+# sudo, curl and git required
+for com in sudo curl git; do
     if ! command -v "$com" &> /dev/null; then
         echo "$com required but not found"
         exit 1
@@ -23,25 +23,19 @@ done
 
 distro_name=$(cat /etc/os-release | grep -Po "^ID=\K.*")
 
-# All required packages exist in main repo of distro, except for atuin on ubuntu
-
 packages=(zsh fzf zoxide atuin)
-ubuntu_packages=(zsh fzf zoxide)
 
 echo "Installing zsh and required packages"
 
 case "$distro_name" in
-    fedora)
+    fedora|almalinux|rhel)
         sudo dnf install -y "${packages[@]}"
         ;;
-    debian)
+    debian|ubuntu|kali|linuxmint|pop)
         sudo apt-get update && sudo apt-get install -y "${packages[@]}"
         ;;
-    ubuntu)
-        sudo apt-get update && sudo apt-get install -y "${ubuntu_packages[@]}"
-        ;;
-    arch)
-        sudo pacman -Sy && sudo pacman -S --needed "${packages[@]}"
+    arch|sysrescue|manjaro|cachyos)
+        sudo pacman -Sy && sudo pacman -S --needed --noconfirm "${packages[@]}"
         ;;
     *)
         echo "$distro_name Unsupported, you can tweak the script to make it work"
@@ -54,12 +48,12 @@ echo "Installing ohmyzsh and its plugins"
 # Installing oh-my-zsh
 
 if [[ ! -e ~/.oh-my-zsh ]]; then
-    RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
 # Installing oh-my-zsh custom plugins
 
-zshcustom_plugins_dir="${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom/plugins}"
+zshcustom_plugins_dir="${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom/plugins}"
 
 # zsh completions
 if [[ ! -e "$zshcustom_plugins_dir"/zsh-completions ]]; then
@@ -126,5 +120,3 @@ echo "Making zsh the default shell"
 chsh -s /bin/zsh
 
 echo "Finished successfully"
-
-
