@@ -21,44 +21,28 @@ distro_name=$(cat /etc/os-release | grep -Po "^ID=\K.*")
 
 packages=(kitty kitty-shell-integration kitty-terminfo)
 
-echo "Installing kitty"
-
-case "$distro_name" in
-    fedora|almalinux|rhel)
-        sudo dnf install -y "${packages[@]}"
-        ;;
-    debian|ubuntu|kali|linuxmint|pop)
-        sudo apt-get update && sudo apt-get install -y "${packages[@]}"
-        ;;
-    arch|sysrescue|manjaro|cachyos)
-        sudo pacman -Sy && sudo pacman -S --needed --noconfirm "${packages[@]}"
-        ;;
-    *)
-        echo "$distro_name Unsupported, you can tweak the script to make it work"
-        exit 1
-esac
-
-echo "Installing firacode font"
-
+# installing firecode font, different package names for different distros
 debpackage=(fonts-firacode)
 dnfpackage=(firacode-nerd-fonts)
 archpackage=(ttf-firacode-nerd)
 
+
+echo "Installing kitty"
+
 case "$distro_name" in
-    fedora)
-        sudo dnf install -y "${dnfpackage[@]}"
+    fedora|almalinux|rhel)
+        sudo dnf install -y "${packages[@]}" "${dnfpackage[@]}"
         ;;
-    debian|ubuntu)
-        sudo apt-get update && sudo apt-get install -y "${debpackage[@]}"
+    debian|ubuntu|kali|linuxmint|pop)
+        sudo apt-get update && sudo apt-get install -y "${packages[@]}" "${debpackage[@]}"
         ;;
-    arch)
-        sudo pacman -Sy && sudo pacman -S --needed "${archpackage[@]}"
+    arch|sysrescue|manjaro|cachyos)
+        sudo pacman -Sy && sudo pacman -S --needed --noconfirm "${packages[@]}" "${archpackage[@]}"
         ;;
     *)
         echo "$distro_name Unsupported, you can tweak the script to make it work"
         exit 1
 esac
-
 
 # creating config directory
 
