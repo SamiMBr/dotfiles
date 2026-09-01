@@ -129,11 +129,14 @@ plugins=(
     autoupdate
 )
 
-source $ZSH/oh-my-zsh.sh
+#auto update omz without prompt
+zstyle ':omz:update' mode auto
 
 # enable custom zsh completions
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 autoload -U compinit; compinit
+
+source $ZSH/oh-my-zsh.sh
 
 
 # zsh configs (should be after omz to overwrite omz defaults)
@@ -150,9 +153,6 @@ setopt HIST_IGNORE_ALL_DUPS
 # in order to fix the problem of autocomplete of new binaries "https://unix.stackexchange.com/questions/2179/rebuild-auto-complete-index-or-whatever-its-called-and-binaries-in-path-cach"
 zstyle ":completion:*:commands" rehash 1
 
-#auto update omz without prompt
-zstyle ':omz:update' mode auto
-
 
 # source needed tools
 
@@ -162,6 +162,7 @@ eval "$(atuin init zsh --disable-up-arrow)"
 
 
 # personal zshrc configs
+
 if [ -d ~/.zshrc.d ]; then
     for rc in ~/.zshrc.d/*.sh; do
         if [ -f "$rc" ]; then
