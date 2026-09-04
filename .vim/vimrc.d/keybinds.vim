@@ -61,3 +61,12 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
+
+" coc keybinds
+
+nnoremap <leader>cs :CocStart<CR>
+nnoremap <leader>ci :CocInfo<CR>
+nnoremap <leader>cc :CocConfig<CR>
+nnoremap <leader>cd :CocDiagnostic<CR>
+nnoremap <leader>cl :CocList<CR>
+
