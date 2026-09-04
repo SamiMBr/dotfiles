@@ -156,9 +156,9 @@ zstyle ":completion:*:commands" rehash 1
 
 # source needed tools
 
-eval "$(zoxide init zsh)"
-source <(fzf --zsh)
-eval "$(atuin init zsh --disable-up-arrow)"
+command -v zoxide &> /dev/null && eval "$(zoxide init zsh)"
+command -v fzf &> /dev/null && source <(fzf --zsh)
+command -v atuin &> /dev/null && eval "$(atuin init zsh --disable-up-arrow)"
 
 
 # personal zshrc configs
