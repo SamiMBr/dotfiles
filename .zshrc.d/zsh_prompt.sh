@@ -6,6 +6,8 @@ RESET='%f'
 BOLD='%B'
 NO_BOLD='%b'
 
+#GOLD_YELLOW='%F{#b9aa04}' # use me for user@host on vms
+
 #CYAN='%F{#8ec07c}'        # gruvbox aqua (soft cyan-green)
 #LIGHT_RED='%F{#fb4934}'   # gruvbox bright red
 #MINT_GREEN='%F{#b8bb26}'  # gruvbox bright green

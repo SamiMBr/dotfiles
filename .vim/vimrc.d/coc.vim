@@ -1,5 +1,5 @@
 """ disable coc by default at startup
-let g:coc_start_at_startup = 0
+"let g:coc_start_at_startup = 0
 
 """ use Enter to select coc completion
 inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
