@@ -71,5 +71,20 @@ if [[ ! -e ~/.vim/autoload/plug.vim ]]; then
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim)"
 fi
 
-echo "To install extensions, Run: vim +PlugInstall"
+echo "Installing plugins"
+
+vim_pluggins_dir="$vim_config_dir/plugged"
+
+git clone "https://github.com/tomasr/molokai" "$vim_pluggins_dir/molokai"
+git clone "https://github.com/morhetz/gruvbox" "$vim_pluggins_dir/gruvbox"
+git clone "https://github.com/tomasiser/vim-code-dark" "$vim_pluggins_dir/vim-code-dark"
+git clone "https://github.com/ku1ik/vim-monokai" "$vim_pluggins_dir/vim-monokai"
+git clone "https://github.com/itchyny/lightline.vim" "$vim_pluggins_dir/lightline.vim"
+git clone "https://github.com/junegunn/fzf" "$vim_pluggins_dir/fzf"
+git clone "https://github.com/junegunn/fzf.vim" "$vim_pluggins_dir/fzf.vim"
+git clone "https://github.com/honza/vim-snippets" "$vim_pluggins_dir/vim-snippets"
+git clone "https://github.com/neoclide/coc.nvim" "$vim_pluggins_dir/coc.nvim"
+git clone "https://github.com/sheerun/vim-polyglot" "$vim_pluggins_dir/vim-polyglot"
+
+
 echo "Finished successfully"
